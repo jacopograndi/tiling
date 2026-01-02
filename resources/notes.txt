@@ -1,0 +1,38 @@
+# Android
+- to setup just look at the dockerfile in cargo-apk
+- i had to use the github version of cargo-apk, not the cargo install one.
+- android build environment guide (old): https://macroquad.rs/articles/android/#a-manual-way
+- package with docker: docker run --rm -v $(pwd)":/root/src" -w /root/src notfl3/cargo-apk cargo quad-apk build --release
+- icon sizes:
+```
+mipmap-mdpi 	48×48 px 	MDPI (baseline)
+mipmap-hdpi 	72×72 px 	HDPI (1.5×)
+mipmap-xhdpi 	96×96 px 	XHDPI (2×)
+mipmap-xxhdpi 	144×144 px 	XXHDPI (3×)
+mipmap-xxxhdpi 	192×192 px 	XXXHDPI (4×)
+```
+
+# Wasm
+- package: cargo build --target wasm32-unknown-unknown --release
+- run locally: basic-http-server .
+
+# Tile reference
+
+C=0, F=1, R=2
+0000 1
+0001 4
+0002 3
+0011 7
+0022 5
+0101 6
+0111 5
+0122 3
+0212 3
+0221 3
+0222 3
+1111 4
+1112 2
+1122 9
+1212 8
+1222 4
+2222 1

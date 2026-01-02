@@ -1,0 +1,34 @@
+[package]
+name = "kripke"
+version = "0.1.0"
+edition = "2021"
+authors = ["Jacopo Grandi"]
+
+[dependencies]
+# rendering and platform code
+miniquad = "0.4.8"
+# math
+glam = { version = "0.24", features = ["scalar-math"] }
+# audio
+[target.'cfg(target_os = "android")'.dependencies]
+audir-sles = "0.1.0"
+[target.'cfg(any(target_os = "linux", target_os = "dragonfly", target_os = "freebsd"))'.dependencies]
+quad-alsa-sys = "0.3.2"
+libc = "0.2"
+[target.'cfg(target_os = "windows")'.dependencies]
+winapi = { version = "0.3.8", features = ["debug", "ksmedia", "audioclient", "combaseapi", "coml2api", "devpkey", "handleapi", "mmdeviceapi", "objbase", "unknwnbase", "winerror", "synchapi", "winbase"] }
+
+# size optimization
+[profile.release]
+strip = true
+opt-level = "z"
+lto = true
+codegen-units = 1
+
+# apk settings
+[package.metadata.android]
+assets = "assets"
+res = "./resources/android-res"
+icon = "@mipmap/ic_launcher"
+[package.metadata.android.activity_attributes]
+"android:exported" = "true"

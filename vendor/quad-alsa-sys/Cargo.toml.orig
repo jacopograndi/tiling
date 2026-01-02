@@ -1,0 +1,30 @@
+[package]
+name = "quad-alsa-sys"
+version = "0.3.2"
+authors = ["Pierre Krieger <pierre.krieger1708@gmail.com>",
+"David Henningsson <coding@diwic.se>"]
+build = "build.rs"
+description = "For of original alsa-sys, but with pkg-config replaced with -lasound."
+license = "MIT"
+links = "alsa"
+repository = "https://github.com/not-fl3/alsa-sys"
+documentation = "http://docs.rs/alsa-sys"
+keywords = ["ALSA", "audio", "sound"]
+categories = ["os::unix-apis", "external-ffi-bindings", "multimedia::audio"]
+edition = "2018"
+
+[dependencies]
+libc = "0.2.65"
+
+[build-dependencies]
+bindgen = { version = "0.56", optional = true }
+
+[features]
+use-bindgen = ["bindgen"]
+
+[[bin]]
+name = "regenerate_bindings"
+path = "regenerate_bindings.rs"
+
+[lib]
+doctest = false
